@@ -1,38 +1,52 @@
 #include<iostream>
 
-struct Player
+struct Dragon
 {
+	bool operator <(const Dragon& other);
 	int heath;
-	int players(int hp);
+	 void Dragons(Dragon arr[], int size);
 };
 
-int Player::players(int hp)
+bool Dragon::operator<(const Dragon& other)
 {
-	for (int i = 0; i < 10; i++)
+	return this->heath < other.heath;
+}
+
+void Dragon::Dragons(Dragon arr[], int size)
+{
+	 Dragon temp;
+	for (int i = 0; i < size; i++)
 	{
-		for (int j = i + 1; j < 10; j++)
+		for (int j = 0 ; j < size; j++)
 		{
-			int temp;
-			if (i < j)
+			
+			if (arr[i] < arr[j])
 			{
-				temp = i;
-				i = j;
-				j = temp;
+				temp = arr[i];
+				arr[i] = arr[j];
+				arr[j] = temp;
 				
 			}
 		}
 	}
-	return hp ;
 }
 
 int main()
 {
-	int Hparry[10];
 	// call the function on an arry where the arry has the Hps of the playes and it sourts them in 
 	// desending order and return the player with the lest Hp.
-	Player* player1 = new Player;
-	Player* player2 = new Player;
-	player1->players(10);
+	Dragon dragon1;
+	Dragon dragon2;
+	Dragon dragon3;
+	dragon1.heath = 20;
+	dragon2.heath = 900;
+	dragon3.heath = 47;
 
+	Dragon arr[3] = { dragon1, dragon2, dragon3 };
 
+	Dragon test;
+
+	test.Dragons(arr, 3);
+
+	system("pause");
 }
